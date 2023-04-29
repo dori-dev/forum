@@ -7,12 +7,14 @@ class TopicSerializer(serializers.ModelSerializer):
     class Meta:
         model = Topic
         fields = [
+            'id',
             'title',
             'description',
             'likes',
             'dislikes',
         ]
         read_only_fields = [
+            'id',
             'likes',
             'dislikes',
         ]
