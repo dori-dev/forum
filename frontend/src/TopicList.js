@@ -1,12 +1,11 @@
 import TopicListItem from "./TopicListItem";
 
-function TopicList() {
+function TopicList({ items }) {
   return (
     <div>
-      <TopicListItem />
-      <TopicListItem />
-      <TopicListItem />
-      <TopicListItem />
+      {items.map((item) => (
+        <TopicListItem item={item} />
+      ))}
     </div>
   );
 }
