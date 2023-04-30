@@ -4,13 +4,12 @@ function TopicListItem({ item }) {
   const [likes, setLikes] = useState(item.likes);
   const [dislikes, setDisLikes] = useState(item.dislikes);
   function vote(vote) {
-    fetch("http://127.0.0.1:8000/forum/votes/", {
+    fetch(`http://127.0.0.1:8000/forum/topics/${item.id}/vote/`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
       body: JSON.stringify({
-        topic: item.id,
         vote: vote,
       }),
     })
