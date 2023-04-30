@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { AppContext, actions } from "./AppContext";
 
 function TopicListItem({ item }) {
-  const [likes, setLikes] = useState(item.likes);
-  const [dislikes, setDisLikes] = useState(item.dislikes);
+  const { dispatch } = useContext(AppContext);
+
   function vote(vote) {
     fetch(`http://127.0.0.1:8000/forum/topics/${item.id}/vote/`, {
       method: "POST",
@@ -15,9 +16,9 @@ function TopicListItem({ item }) {
     })
       .then((response) => {
         if (vote === "l") {
-          setLikes(likes + 1);
+          dispatch({ type: actions.TOPIC_LIKED, topic: item });
         } else {
-          setDisLikes(dislikes + 1);
+          dispatch({ type: actions.TOPIC_DISLIKED, topic: item });
         }
       })
       .catch((error) => console.log(error));
@@ -32,8 +33,8 @@ function TopicListItem({ item }) {
     <div>
       <h2>{item.title}</h2>
       <p>{item.description}</p>
-      <small onClick={like}>{likes} Likes</small>
-      <small onClick={dislike}>{dislikes} Dislikes</small>
+      <small onClick={like}>{item.likes} Likes</small>
+      <small onClick={dislike}>{item.dislikes} Dislikes</small>
     </div>
   );
 }
