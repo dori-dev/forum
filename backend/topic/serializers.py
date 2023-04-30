@@ -27,3 +27,6 @@ class VoteSerializer(serializers.ModelSerializer):
             'topic',
             'vote',
         ]
+        read_only_fields = [
+            'topic',
+        ]

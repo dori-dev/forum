@@ -5,5 +5,5 @@ from topic import views
 
 urlpatterns = [
     path('topics/', views.TopicListCreateAPIView.as_view()),
-    path('votes/', views.CreateVoteAPIView.as_view()),
+    path('topics/<int:pk>/vote/', views.CreateVoteAPIView.as_view()),
 ]
